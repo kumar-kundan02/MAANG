@@ -435,3 +435,101 @@ public class AlienDictionary
     }
 }
 ```
+
+**11. Shortest Path in Directred Acyclic Graph(DAG)**
+
+> **Intution:**
+>- In a Directed Acyclic Graph (DAG), we can find the shortest path from a source node to all other nodes using topological sorting.
+>- First, we perform a ***Topological sort*** of the graph.
+>- Then, we **initialize** distances from the source to **all nodes** as **infinite**, except for the **source** itself which is **set to 0**.
+>- We then process each node in topological order, **updating the distances to its neighbors** if a shorter path is found.
+
+```CSharp
+public class ShortestPathDAG
+{
+    public int[] ShortestPath(int V, List<List<(int neighbor, int weight)>> adj, int source)
+    {
+        TopologicalSortDFS topoSort = new TopologicalSortDFS();
+        List<int> order = topoSort.TopologicalSort(V, ConvertToAdjacencyList(adj));
+
+        int[] dist = new int[V];
+        for (int i = 0; i < V; i++)
+        {
+            dist[i] = int.MaxValue;
+        }
+        dist[source] = 0;
+
+        foreach (var node in order)
+        {
+            if (dist[node] != int.MaxValue)
+            {
+                foreach (var (neighbor, weight) in adj[node])
+                {
+                    if (dist[node] + weight < dist[neighbor])
+                    {
+                        dist[neighbor] = dist[node] + weight;
+                    }
+                }
+            }
+        }
+
+        return dist;
+    }
+
+    private List<List<int>> ConvertToAdjacencyList(List<List<(int neighbor, int weight)>> adj)
+    {
+        List<List<int>> simpleAdj = new List<List<int>>(new List<int>[adj.Count]);
+        for (int i = 0; i < adj.Count; i++)
+        {
+            simpleAdj[i] = new List<int>();
+            foreach (var (neighbor, _) in adj[i])
+            {
+                simpleAdj[i].Add(neighbor);
+            }
+        }
+        return simpleAdj;
+    }
+}
+```
+
+**12. Shortest Path in Undirected Graph using BFS with Unit Weights**
+
+> **Intution:**
+>- In an undirected graph with unit weights, we can find the shortest path from a source node to all other nodes using BFS.
+>- We initialize distances from the source to all nodes as infinite, except for the source itself which is set to 0.
+>- We use a queue to perform BFS, updating the distances to neighbors as we explore the graph.
+
+```CSharp
+public class ShortestPathUndirectedGraph
+{
+    public int[] ShortestPath(int V, List<List<int>> adj, int source)
+    {
+        int[] dist = new int[V];
+        for (int i = 0; i < V; i++)
+        {
+            dist[i] = int.MaxValue;
+        }
+        dist[source] = 0;
+
+        Queue<int> queue = new Queue<int>();
+        queue.Enqueue(source);
+
+        while (queue.Count > 0)
+        {
+            int node = queue.Dequeue();
+
+            foreach (var neighbor in adj[node])
+            {
+                if (dist[node] + 1 < dist[neighbor])
+                {
+                    dist[neighbor] = dist[node] + 1;
+                    queue.Enqueue(neighbor);
+                }
+            }
+        }
+
+        return dist;
+    }
+}
+```
+

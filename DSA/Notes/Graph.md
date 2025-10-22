@@ -156,3 +156,132 @@ public class TopologicalSortKahn
     }
 }
 ```
+
+#### Dijkstra's Algorithm
+* Dijkstra's Algorithm is used to find the shortest path from a source vertex to all other  vertices in a weighted graph with ***non-negative edge weights***.
+* It uses a priority queue to explore the vertex with the smallest known distance first.
+* It updates the distances of neighboring vertices if a shorter path is found through the current vertex.
+
+```CSharp
+public class DijkstraAlgorithm
+{
+    public int[] Dijkstra(int V, List<List<(int neighbor, int weight)>> adj, int source)
+    {
+        int[] distances = new int[V];
+        for (int i = 0; i < V; i++)
+        {
+            distances[i] = int.MaxValue;
+        }
+        distances[source] = 0;
+
+        var priorityQueue = new SortedSet<(int distance, int vertex)>();
+        priorityQueue.Add((0, source));
+
+        while (priorityQueue.Count > 0)
+        {
+            var (currentDistance, currentVertex) = priorityQueue.Min;
+            priorityQueue.Remove(priorityQueue.Min);
+
+            foreach (var (neighbor, weight) in adj[currentVertex])
+            {
+                int newDist = currentDistance + weight;
+                if (newDist < distances[neighbor])
+                {
+                    priorityQueue.Remove((distances[neighbor], neighbor));
+                    distances[neighbor] = newDist;
+                    priorityQueue.Add((newDist, neighbor));
+                }
+            }
+        }
+
+        return distances;
+    }
+}
+```
+
+#### Belmon-Ford Algorithm
+* Bellman-Ford Algorithm is used to find the shortest path from a source vertex to all other vertices in a weighted graph, even if the graph contains edges with negative weights.
+* It works by repeatedly relaxing all edges, ensuring that the shortest path to each vertex is found.
+* It can also detect negative weight cycles in the graph.
+
+```CSharp
+public class BellmanFordAlgorithm
+{
+    public int[] BellmanFord(int V, List<(int u, int v, int weight)> edges, int source)
+    {
+        int[] distances = new int[V];
+        for (int i = 0; i < V; i++)
+        {
+            distances[i] = int.MaxValue;
+        }
+        distances[source] = 0;
+
+        for (int i = 1; i <= V - 1; i++)
+        {
+            foreach (var (u, v, weight) in edges)
+            {
+                if (distances[u] != int.MaxValue && distances[u] + weight < distances[v])
+                {
+                    distances[v] = distances[u] + weight;
+                }
+            }
+        }
+
+        // Check for negative weight cycles
+        foreach (var (u, v, weight) in edges)
+        {
+            if (distances[u] != int.MaxValue && distances[u] + weight < distances[v])
+            {
+                throw new InvalidOperationException("Graph contains a negative weight cycle.");
+            }
+        }
+
+        return distances;
+    }
+}
+```
+
+#### Floyd-Warshall Algorithm
+* Multi source shortest path algorithm.
+* It finds shortest paths between all pairs of vertices in a weighted graph.
+* It finds shortest path from all vertices to all vertices.
+* It works by considering each vertex as an intermediate point and updating the shortest paths accordingly.
+* It can handle graphs with negative edge weights but no negative weight cycles.
+
+```CSharp
+public class FloydWarshallAlgorithm
+{
+    public int[,] FloydWarshall(int V, int[,] graph)
+    {
+        int[,] dist = new int[V, V];
+
+        // Initialize distance array
+        for (int i = 0; i < V; i++)
+        {
+            for (int j = 0; j < V; j++)
+            {
+                dist[i, j] = graph[i, j];
+            }
+        }
+
+        // Update distances using intermediate vertices
+        for (int k = 0; k < V; k++)
+        {
+            for (int i = 0; i < V; i++)
+            {
+                for (int j = 0; j < V; j++)
+                {
+                    if (dist[i, k] != int.MaxValue && dist[k, j] != int.MaxValue &&
+                        dist[i, k] + dist[k, j] < dist[i, j])
+                    {
+                        dist[i, j] = dist[i, k] + dist[k, j];
+                    }
+                }
+            }
+        }
+
+        return dist;
+    }
+}
+```
+
