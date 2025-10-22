@@ -17,7 +17,35 @@
 * **Time Complexity:** O(V + E) where V is the number of vertices and E is the number of edges in the graph.
 * **Space Complexity:** O(V) for the visited array and the queue in the worst case.
 
-@import "../Code/BFS.cs" ```
+```CSharp
+public class BFS
+{
+    public void Traverse(int startNode, List<List<int>> adj)
+    {
+        int V = adj.Count;
+        bool[] visited = new bool[V];
+        Queue<int> queue = new Queue<int>();
+
+        visited[startNode] = true;
+        queue.Enqueue(startNode);
+
+        while (queue.Count > 0)
+        {
+            int node = queue.Dequeue();
+            Console.WriteLine(node); // Process the node
+
+            foreach (var neighbor in adj[node])
+            {
+                if (!visited[neighbor])
+                {
+                    visited[neighbor] = true;
+                    queue.Enqueue(neighbor);
+                }
+            }
+        }
+    }
+}
+```
 
 ## DFS (Depth First Search)
 * Used for traversing or searching tree or graph data structures.
@@ -42,7 +70,62 @@ O(V) for the visited array and the stack in the worst case.
 >- Once node is inserted in Stack, mark it as Visited
 >
 
-@import "../Code/DFS.cs" ```
+```CSharp
+
+// Iterative DFS using Stack
+public class DFS
+{
+    public void Traverse(int startNode, List<List<int>> adj)
+    {
+        int V = adj.Count;
+        bool[] visited = new bool[V];
+        Stack<int> stack = new Stack<int>();
+
+        stack.Push(startNode);
+        visited[startNode] = true;
+
+        while (stack.Count > 0)
+        {
+            int node = stack.Pop();
+            Console.WriteLine(node); // Process the node
+
+            foreach (var neighbor in adj[node])
+            {
+                if (!visited[neighbor])
+                {
+                    visited[neighbor] = true;
+                    stack.Push(neighbor);
+                }
+            }
+        }
+    }
+}
+
+// Recursive DFS
+public class DFSRecursive
+{
+    public void Traverse(int startNode, List<List<int>> adj)
+    {
+        int V = adj.Count;
+        bool[] visited = new bool[V];
+        DFSUtil(startNode, visited, adj);
+    }
+
+    private void DFSUtil(int node, bool[] visited, List<List<int>> adj)
+    {
+        visited[node] = true;
+        Console.WriteLine(node); // Process the node
+
+        foreach (var neighbor in adj[node])
+        {
+            if (!visited[neighbor])
+            {
+                DFSUtil(neighbor, visited, adj);
+            }
+        }
+    }
+}
+```
 
 #### Topological Sort
 * Topological Sort is a linear ordering of vertices such that for every directed edge u -> v, vertex u comes before v in the ordering.
