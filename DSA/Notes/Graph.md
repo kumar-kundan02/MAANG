@@ -20,7 +20,7 @@
 ```CSharp
 public class BFS
 {
-    public void Traverse(int startNode, List<List<int>> adj)
+    public void Traverse(int startNode, List<List<int>> adj);o
     {
         int V = adj.Count;
         bool[] visited = new bool[V];
@@ -190,6 +190,10 @@ Graph (DAG) using BFS.
 >- Start with all vertices that have an in-degree of 0 (no dependencies).
 >- Use a queue to process these vertices, and for each vertex processed, reduce the in-degree
 of its neighbors. If any neighbor's in-degree becomes 0, add it to the queue.
+>- ***No Need of Visited Array as we are using inDegree to track processed nodes.***
+>- ***Note:*** If ther is a cycle in the graph, Kahn's algorithm will not be able to process all vertices, indicating that a topological sort is not possible.
+>- ***Reason:*** In a cycle, there will be no vertex with in-degree 0 to start the process as the Node Forming Cycle will be having inDegree > 0 
+so, in this case no Node will be added to Queue but Queue will become empty as last node is processed and loop will terminate.
 
 ```CSharp
 public class TopologicalSortKahn
@@ -244,8 +248,12 @@ public class TopologicalSortKahn
 * Dijkstra's Algorithm is used to find the shortest path from a source vertex to all other  vertices in a weighted graph with ***non-negative edge weights***.
 * It uses a priority queue to explore the vertex with the smallest known distance first.
 * It updates the distances of neighboring vertices if a shorter path is found through the current vertex.
+* It works for both directed and undirected graphs.
+* It usage kind of similar but not exactly to BFS approach with priority queue to ensure the shortest path is found efficiently.
 
-```CSharp
+```CSharp 
+// Dijkstra's Algorithm Implementation using Priority Queue but not SortedSet
+// As SortedSet does not allow duplicate priorities which may lead to incorrect results in Dijkstra's Algorithm
 public class DijkstraAlgorithm
 {
     public int[] Dijkstra(int V, List<List<(int neighbor, int weight)>> adj, int source)
@@ -257,22 +265,22 @@ public class DijkstraAlgorithm
         }
         distances[source] = 0;
 
-        var priorityQueue = new SortedSet<(int distance, int vertex)>();
-        priorityQueue.Add((0, source));
+        var pq = new PriorityQueue<(int node, int distance), int>();
+        pq.Enqueue((source, 0), 0);
 
-        while (priorityQueue.Count > 0)
+        while (pq.Count > 0)
         {
-            var (currentDistance, currentVertex) = priorityQueue.Min;
-            priorityQueue.Remove(priorityQueue.Min);
+            var (node, currentDistance) = pq.Dequeue();
 
-            foreach (var (neighbor, weight) in adj[currentVertex])
+            if (currentDistance > distances[node]) continue;
+
+            foreach (var (neighbor, weight) in adj[node])
             {
-                int newDist = currentDistance + weight;
+                int newDist = distances[node] + weight;
                 if (newDist < distances[neighbor])
                 {
-                    priorityQueue.Remove((distances[neighbor], neighbor));
                     distances[neighbor] = newDist;
-                    priorityQueue.Add((newDist, neighbor));
+                    pq.Enqueue((neighbor, newDist), newDist);
                 }
             }
         }
