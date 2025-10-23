@@ -293,6 +293,9 @@ public class DijkstraAlgorithm
 #### Belmon-Ford Algorithm
 * Bellman-Ford Algorithm is used to find the shortest path from a source vertex to all other vertices in a weighted graph, even if the graph contains edges with negative weights.
 * It works by repeatedly relaxing all edges, ensuring that the shortest path to each vertex is found.
+* It should be noted that Bellman-Ford is less efficient than Dijkstra's algorithm for graphs with non-negative weights.
+* It runs for V-1 iterations, where V is the number of vertices in the graph, and in each iteration, it relaxes all edges.
+* Time Complexity: O(V * E), where V is the number of vertices and E is the number of edges in the graph.
 * It can also detect negative weight cycles in the graph.
 
 ```CSharp
@@ -309,6 +312,7 @@ public class BellmanFordAlgorithm
 
         for (int i = 1; i <= V - 1; i++)
         {
+            // Relaxing edeges
             foreach (var (u, v, weight) in edges)
             {
                 if (distances[u] != int.MaxValue && distances[u] + weight < distances[v])
@@ -318,7 +322,7 @@ public class BellmanFordAlgorithm
             }
         }
 
-        // Check for negative weight cycles
+        // Relax edge one more time to detect negative weight cycle
         foreach (var (u, v, weight) in edges)
         {
             if (distances[u] != int.MaxValue && distances[u] + weight < distances[v])
