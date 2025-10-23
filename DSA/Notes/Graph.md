@@ -1,5 +1,8 @@
 ### Graph
 
+>- **Adjacency Matrix:** Space Complexity: O(V^2), Time Complexity for checking edge: O(1), for traversing all neighbors: O(V)
+>- **Adjacency List:** Space Complexity: O(V + E), Time Complexity for checking edge: O(V) in worst case, for traversing all neighbors: O(degree of vertex)
+
 #### Breadth First Search (BFS)
 * Used for traversing or searching tree or graph data structures.
 * Explores all neighbors at the present depth prior to moving on to nodes at the next depth
@@ -131,6 +134,8 @@ public class DFSRecursive
 * Topological Sort is a linear ordering of vertices such that for every directed edge u -> v, vertex u comes before v in the ordering.
 * It is applicable only to Directed Acyclic Graphs (DAGs).
 * It is mainly used for scheduling tasks, resolving dependencies, and organizing data with precedence constraints.
+* **Time Complexity: O(V + E)**, where V is the number of vertices and E is the number of edges in the graph.
+* **Space Complexity: O(V)** for the visited array and the stack.
 
 **Intuition:**
 >- Use DFS to explore each vertex and its neighbors.
@@ -184,6 +189,8 @@ public class TopologicalSortDFS
 #### Kahn's Algorithm for Topological Sort(BFS)
 * Kahn's Algorithm is another method to perform topological sorting of a Directed Acyclic
 Graph (DAG) using BFS.
+* **Time Complexity: O(V + E)**, where V is the number of vertices and E is the number of edges in the graph.
+* **Space Complexity: O(V)** for the in-degree array and the queue.
 
 **Intuition:**
 >- Calculate the ***in-degree*** (number of incoming edges) for each vertex.
@@ -250,6 +257,8 @@ public class TopologicalSortKahn
 * It updates the distances of neighboring vertices if a shorter path is found through the current vertex.
 * It works for both directed and undirected graphs.
 * It usage kind of similar but not exactly to BFS approach with priority queue to ensure the shortest path is found efficiently.
+* **Time Complexity: O((V + E) log V)**, where V is the number of vertices and E is the number of edges in the graph.
+* **Space Complexity: O(V)** for the distance array and the priority queue.
 
 ```CSharp 
 // Dijkstra's Algorithm Implementation using Priority Queue but not SortedSet
@@ -291,12 +300,13 @@ public class DijkstraAlgorithm
 ```
 
 #### Belmon-Ford Algorithm
-* Bellman-Ford Algorithm is used to find the shortest path from a source vertex to all other vertices in a weighted graph, even if the graph contains edges with negative weights.
+* Bellman-Ford Algorithm is used to find the ***shortest path from a source vertex to all other vertices*** in a weighted graph, even if the graph contains edges with negative weights.
 * It works by repeatedly relaxing all edges, ensuring that the shortest path to each vertex is found.
 * It should be noted that Bellman-Ford is less efficient than Dijkstra's algorithm for graphs with non-negative weights.
 * It runs for V-1 iterations, where V is the number of vertices in the graph, and in each iteration, it relaxes all edges.
-* Time Complexity: O(V * E), where V is the number of vertices and E is the number of edges in the graph.
 * It can also detect negative weight cycles in the graph.
+* **Time Complexity: O(V * E)**, where V is the number of vertices and E is the number of edges in the graph.
+* **Space Complexity: O(V)** for the distance array.
 
 ```CSharp
 public class BellmanFordAlgorithm
@@ -337,11 +347,14 @@ public class BellmanFordAlgorithm
 ```
 
 #### Floyd-Warshall Algorithm
-* Multi source shortest path algorithm.
+* ***Multi source shortest path*** algorithm.
+* It computes the shortest paths between all pairs of nodes in a weighted graph.
 * It finds shortest paths between all pairs of vertices in a weighted graph.
 * It finds shortest path from all vertices to all vertices.
 * It works by considering each vertex as an intermediate point and updating the shortest paths accordingly.
-* It can handle graphs with negative edge weights but no negative weight cycles.
+* It can handle graphs with negative edge weights but no negative weight cycles(but it can detect).
+* **Time Complexity: O(V^3)**, where V is the number of vertices in the graph.
+* **Space Complexity: O(V^2)** for the distance matrix.
 
 ```CSharp
 public class FloydWarshallAlgorithm
@@ -366,12 +379,21 @@ public class FloydWarshallAlgorithm
             {
                 for (int j = 0; j < V; j++)
                 {
-                    if (dist[i, k] != int.MaxValue && dist[k, j] != int.MaxValue &&
-                        dist[i, k] + dist[k, j] < dist[i, j])
+                    if (dist[i, k] != int.MaxValue && dist[k, j] != int.MaxValue)
                     {
-                        dist[i, j] = dist[i, k] + dist[k, j];
+                        dist[i, j] = Math.Min(dist[i,j], dist[i, k] + dist[k, j]);
                     }
                 }
+            }
+        }
+
+        // Detect negative cycles
+        for (int i = 0; i < n; i++)
+        {
+            if (dist[i, i] < 0)
+            {
+                Console.WriteLine("Graph contains a negative weight cycle.");
+                break;
             }
         }
 
