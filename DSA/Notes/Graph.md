@@ -457,84 +457,6 @@ public class PrimAlgorithm
 }
 ```
 
-#### Kruskal's Algorithm
-* Kruskal's Algorithm finds the Minimum Spanning Tree (MST) of a connected, undirected graph by sorting all edges by weight and adding them one by one to the MST, ensuring that no cycles are formed.
-* It uses the Disjoint Set Union (DSU) data structure to efficiently manage and merge connected components.
-* The algorithm continues adding edges until the MST contains V-1 edges, where V is the number of vertices in the graph.
-* Below is the implementation of Kruskal's Algorithm in C#.
-
-```CSharp
-public class KruskalAlgorithm
-{
-    private class DisjointSet
-    {
-        private int[] parent;
-        private int[] rank;
-
-        public DisjointSet(int size)
-        {
-            parent = new int[size];
-            rank = new int[size];
-            for (int i = 0; i < size; i++)
-            {
-                parent[i] = i;
-                rank[i] = 0;
-            }
-        }
-
-        public int Find(int u)
-        {
-            if (parent[u] != u)
-            {
-                parent[u] = Find(parent[u]);
-            }
-            return parent[u];
-        }
-
-        public void Union(int u, int v)
-        {
-            int rootU = Find(u);
-            int rootV = Find(v);
-
-            if (rootU != rootV)
-            {
-                if (rank[rootU] > rank[rootV])
-                {
-                    parent[rootV] = rootU;
-                }
-                else if (rank[rootU] < rank[rootV])
-                {
-                    parent[rootU] = rootV;
-                }
-                else
-                {
-                    parent[rootV] = rootU;
-                    rank[rootU]++;
-                }
-            }
-        }
-    }
-
-    public List<(int u, int v, int weight)> Kruskal(int V, List<(int u, int v, int weight)> edges)
-    {
-        edges.Sort((a, b) => a.weight.CompareTo(b.weight));
-        DisjointSet ds = new DisjointSet(V);
-        List<(int u, int v, int weight)> mstEdges = new List<(int u, int v, int weight)>();
-
-        foreach (var (u, v, weight) in edges)
-        {
-            if (ds.Find(u) != ds.Find(v))
-            {
-                ds.Union(u, v);
-                mstEdges.Add((u, v, weight));
-            }
-        }
-
-        return mstEdges;
-    }
-}
-```
-
 #### Disjoint Set Union (DSU) / Union-Find
 * Disjoint Set Union (DSU), also known as Union-Find, is a data structure that keeps track of a partition of a set into disjoint subsets.
 * It supports two main operations: Find and Union.
@@ -595,6 +517,38 @@ public class DisjointSet
     }
 }
 ```
+
+#### Kruskal's Algorithm
+* Kruskal's Algorithm finds the Minimum Spanning Tree (MST) of a connected, undirected graph by sorting all edges by weight and adding them one by one to the MST, ensuring that no cycles are formed.
+* It uses the Disjoint Set Union (DSU) data structure to efficiently manage and merge connected components.
+* The algorithm continues adding edges until the MST contains V-1 edges, where V is the number of vertices in the graph.
+* Below is the implementation of Kruskal's Algorithm in C#.
+
+```CSharp
+public class KruskalAlgorithm
+{
+    // Referring DisjointSet class defined earlier
+
+    public List<(int u, int v, int weight)> Kruskal(int V, List<(int u, int v, int weight)> edges)
+    {
+        edges.Sort((a, b) => a.weight.CompareTo(b.weight));
+        DisjointSet ds = new DisjointSet(V);
+        List<(int u, int v, int weight)> mstEdges = new List<(int u, int v, int weight)>();
+
+        foreach (var (u, v, weight) in edges)
+        {
+            if (ds.Find(u) != ds.Find(v))
+            {
+                ds.Union(u, v);
+                mstEdges.Add((u, v, weight));
+            }
+        }
+
+        return mstEdges;
+    }
+}
+```
+
 #### Kosaraju's Algorithm for Strongly Connected Components (SCC)
 * Kosaraju's Algorithm is used to find all Strongly Connected Components (SCCs) in a directed graph.
 * An SCC is a maximal subgraph where every vertex is reachable from every other vertex within the subgraph.
