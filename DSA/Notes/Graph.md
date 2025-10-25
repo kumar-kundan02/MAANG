@@ -550,87 +550,97 @@ public class KruskalAlgorithm
 ```
 
 #### Kosaraju's Algorithm for Strongly Connected Components (SCC)
-* Kosaraju's Algorithm is used to find all Strongly Connected Components (SCCs) in a directed graph.
+* It is applicable to **directed graphs** only.
+* Kosaraju's Algorithm is used to find all Strongly Connected Components (SCCs).
 * An SCC is a maximal subgraph where every vertex is reachable from every other vertex within the subgraph.
+* It means that if there is a path from vertex A to vertex B, then there is also a path from vertex B to vertex A.
+
 * The algorithm works in two main passes:   
   1. Perform a DFS on the original graph to determine the finishing order of vertices.
-  2. Reverse the graph (transpose) and perform DFS in the order of decreasing finishing times to identify SCCs.
+  2. Put all vertices in a stack according to their finishing times.
+  3. Reverse the graph (transpose) and perform DFS in the order of decreasing finishing times to identify SCCs.
+  4. Each Node will be taken from Stack and DFS will be performed if not visited already in transposed graph.
+  5. Each DFS traversal in the transposed graph will yield one SCC.
 * Below is the implementation of Kosaraju's Algorithm in C#.
 
 ```CSharp
-public class KosarajuAlgorithm
+public class SCC_Kosaraju_Algorithm
 {
-    private void DFS(int node, bool[] visited, Stack<int> stack, List<List<int>> adj)
+    private List<List<int>> FindSCCs(int vertices, List<List<int>> adj)
+    {
+        // Step 1: Perform DFS and store the finish order
+        Stack<int> finishStack = new Stack<int>();
+        bool[] visited = new bool[vertices];
+
+        for (int i = 0; i < vertices; i++)
+        {
+            if (!visited[i])
+            {
+                DFS(i, adj, visited, finishStack);
+            }
+        }
+
+        // Step 2: Transpose the graph
+        List<List<int>> transposedAdj = TransposeGraph(vertices, adj);
+
+        // Step 3: Perform DFS on transposed graph in finish order
+        visited = new bool[vertices];
+        List<List<int>> sccs = new List<List<int>>();
+        while (finishStack.Count > 0)
+        {
+            int node = finishStack.Pop();
+            if (!visited[node])
+            {
+                List<int> currentSCC = new List<int>();
+                DFS_Transpose(node, transposedAdj, visited, currentSCC);
+                sccs.Add(currentSCC);
+            }
+        }
+        return sccs;
+    }
+
+    private void DFS(int node, List<List<int>> adj, bool[] visited, Stack<int> finishStack)
     {
         visited[node] = true;
         foreach (var neighbor in adj[node])
         {
             if (!visited[neighbor])
             {
-                DFS(neighbor, visited, stack, adj);
+                DFS(neighbor, adj, visited, finishStack);
             }
         }
-        stack.Push(node);
+        finishStack.Push(node);
     }
 
-    private void TransposeGraph(List<List<int>> adj, List<List<int>> transposedAdj)
+    private List<List<int>> TransposeGraph(int vertices, List<List<int>> adj)
     {
-        for (int i = 0; i < adj.Count; i++)
+        List<List<int>> transposedAdj = new List<List<int>>();
+        for (int i = 0; i < vertices; i++)
+        {
+            transposedAdj.Add(new List<int>());
+        }
+
+        for (int i = 0; i < vertices; i++)
         {
             foreach (var neighbor in adj[i])
             {
                 transposedAdj[neighbor].Add(i);
             }
         }
+        return transposedAdj;
     }
 
-    private void DFSUtil(int node, bool[] visited, List<int> component, List<List<int>> transposedAdj)
+    private void DFS_Transpose(int node, List<List<int>> transposedAdj, bool[] visited, List<int> currentSCC)
     {
         visited[node] = true;
-        component.Add(node);
+        currentSCC.Add(node);
         foreach (var neighbor in transposedAdj[node])
         {
             if (!visited[neighbor])
             {
-                DFSUtil(neighbor, visited, component, transposedAdj);
+                DFS_Transpose(neighbor, transposedAdj, visited, currentSCC);
             }
         }
-    }
-    public List<List<int>> FindSCCs(int V, List<List<int>> adj)
-    {
-        Stack<int> stack = new Stack<int>();
-        bool[] visited = new bool[V];
-
-        // First pass: Fill vertices in stack according to their finishing times
-        for (int i = 0; i < V; i++)
-        {
-            if (!visited[i])
-            {
-                DFS(i, visited, stack, adj);
-            }
-        }
-        // Transpose the graph
-        List<List<int>> transposedAdj = new List<List<int>>(V);
-        for (int i = 0; i < V; i++)
-        {
-            transposedAdj.Add(new List<int>());
-        }
-
-        TransposeGraph(adj, transposedAdj);
-        // Second pass: Process all vertices in order defined by the stack
-        visited = new bool[V];
-        List<List<int>> sccs = new List<List<int>>();
-        while (stack.Count > 0)
-        {
-            int node = stack.Pop();
-            if (!visited[node])
-            {
-                List<int> component = new List<int>();
-                DFSUtil(node, visited, component, transposedAdj);
-                sccs.Add(component);
-            }
-        }
-        return sccs;
     }
 }
 ```
