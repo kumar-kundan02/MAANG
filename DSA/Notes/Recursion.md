@@ -90,6 +90,11 @@ public class RecursionExamples
 }
 ```
 #### Example: Generating All Subsets of a Set using Input/Output Based Recursion in C#
+>- Recursive backtracking:
+At each step, you decide:
+    - Include the current element in the subset.
+    - Exclude the current element and move on.
+
 ```csharp
 using System;
 using System.Collections.Generic;
