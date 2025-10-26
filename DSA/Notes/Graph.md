@@ -650,7 +650,7 @@ public class SCC_Kosaraju_Algorithm
 * It uses a single DFS traversal and maintains two arrays: discovery time and low-link values.
 * The low-link value of a vertex is the smallest discovery time reachable from that vertex.
 * When a vertex's discovery time equals its low-link value, it indicates the root of an SCC.
-* Below is the implementation of Tarjan's Algorithm in C#.
+* **Applications:** Circuit analysis, dependency resolution, deadlock detection, optimizing routes, and more!* Below is the implementation of Tarjan's Algorithm in C#.
 
 ```CSharp
 public class TarjanAlgorithm
