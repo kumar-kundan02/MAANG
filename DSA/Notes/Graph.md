@@ -252,6 +252,7 @@ public class TopologicalSortKahn
 ```
 
 #### Dijkstra's Algorithm
+* **Dijkstra's varriations:** [Problems](https://leetcode.com/discuss/post/7322154/10-dijkstra-variations-for-interview-pre-s8by/)
 * Dijkstra's Algorithm is used to find the shortest path from a source vertex to all other  vertices in a weighted graph with ***non-negative edge weights***.
 * It uses a priority queue to explore the vertex with the smallest known distance first.
 * It updates the distances of neighboring vertices if a shorter path is found through the current vertex.
