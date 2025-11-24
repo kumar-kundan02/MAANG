@@ -1,5 +1,5 @@
 ### Googlyness Questions
-
+**IGotAnOffer Article please have a look [click Here](https://igotanoffer.com/blogs/tech/googleyness-leadership-interview-questions)**
 **Part 1**
 - If you were asked to work on an entirely new tech stack, with a new team, how would you approach it?
 - Follow up on the above: Let's say you are unable to find any relevant resources and documentation to help you ramp up, what do you do? (This was asked since in the above question I had said that I will refer to any documentation available, along with a few other action items)
@@ -15,7 +15,7 @@
 - Tell me about a time when your work was deprioritized mid-way through a project. How did you handle the situation? Follow-up: How would your approach change if you were the team lead?
 - Describe a time when you had to make last-minute changes to your code. How did you feel about it?
 
-**[Part 3: Compiled Googlyness Questions](https://leetcode.com/discuss/post/5963463/googlyness-frequently-asked-questions-by-55sh/)**
+**Part 3: Leetcode Compiled Googlyness Questions [Click Here](https://leetcode.com/discuss/post/5963463/googlyness-frequently-asked-questions-by-55sh/)**
 
 **General Behavioral Questions**
 ```
