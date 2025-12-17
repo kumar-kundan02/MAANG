@@ -1,4 +1,12 @@
 ### Googlyness Questions
+
+- If you were asked to work on an entirely new tech stack, with a new team, how would you approach it?
+- Follow up on the above: Let's say you are unable to find any relevant resources and documentation to help you ramp up, what do you do? (This was asked since in the above question I had said that I will refer to any documentation available, along with a few other action items)
+- How do you ensure accessibility in the work you do?
+- If you identified that a junior team member requires additional training how do you help them?
+- How do you handle different perspectives around you and how do you make sure that you are being inclusive of everyone's perspectives?
+
+
 **IGotAnOffer Article please have a look [click Here](https://igotanoffer.com/blogs/tech/googleyness-leadership-interview-questions)**
 **Part 1**
 - If you were asked to work on an entirely new tech stack, with a new team, how would you approach it?
@@ -100,3 +108,70 @@
 5.	Describe a time when you had to make last-minute changes to your code. How did you feel about it?
 6.	How do you stay updated with the latest industry trends? Can you give an example of applying a new trend or technology in your work?
 ```
+
+
+### Questions & Answers
+
+#### 1. Tell me about a time you had to work with someone whose working style was very different from yours. How did you handle it?
+
+```
+In one project, I worked with a teammate whose style was very different from mine. I tend to plan upfront, while they preferred to iterate quickly and adjust as we went.
+Initially, this caused some friction around timelines and expectations.
+I set up a one-on-one conversation to understand how they worked best, and we aligned on a middle ground—high-level planning upfront, with flexibility in execution.
+We also scheduled regular check-ins to make sure we were aligned and to catch issues early.
+Over time, we learned from each other’s approach, and we were able to deliver the feature on time without compromising quality.
+```
+
+#### 2. Tell me about a time you received critical feedback. How did you respond, and what did you do differently afterward?
+
+```
+In a previous role, I joined as a Tech Lead. During a one-on-one after about a year, my manager gave me critical feedback.
+He told me that while I was performing very well as a senior developer, I wasn’t fully meeting expectations as a Tech Lead because I was trying to do too much myself instead of delegating.
+Initially, it was difficult to hear, but I took it seriously and reflected on it. I realized I was optimizing for personal productivity rather than team effectiveness.
+I consciously shifted my approach—started mentoring junior engineers, delegated technical tasks, and focused more on enabling the team.
+Within a few weeks, team velocity improved, collaboration increased, and people became more proactive and comfortable sharing ideas.
+This experience taught me that leadership is less about doing the most work and more about helping the team succeed.
+```
+
+#### 3. Tell me about a time you disagreed with a decision made by your team or manager. What did you do?
+
+```
+In a previous role, we were migrating from a monolith to microservices and needed a workflow tracking tool. Since we were part of an R&D team, we were limited to open-source options.
+
+During discussions, most of the tools we evaluated were either too complex or didn’t align well with our actual needs. I suggested that we consider building a lightweight internal solution, but the team was concerned about maintenance cost and reinventing the wheel.
+
+Rather than pushing the idea, one teammate and I proposed doing a small proof of concept in parallel, with a clear time box, to validate whether it was even viable.
+
+We built a simple prototype in a few days and presented it to the team for feedback. Seeing that it addressed our core needs with a much lower learning curve, the team aligned on moving forward with it.
+
+We then completed it collaboratively, and it was well adopted across the team. This experience reinforced for me the importance of respecting differing opinions while using data and prototypes to resolve disagreements constructively.
+```
+
+#### 4. Tell me about a time you had to help a teammate who was struggling. What did you do?
+
+```
+A few months ago, I noticed that several system tests hadn’t been running for almost two years. I discovered this while working on a feature.
+
+I initially asked a teammate to investigate and fix it so they could own the solution. After a couple of days, they were still stuck, so I offered to help and we paired on it.
+
+I first asked them to clearly explain the problem, what they had already tried, and what their current hypothesis was. This helped structure the debugging process and made sure we weren’t revisiting the same paths.
+
+Together, we narrowed down the possibilities and eventually realized the issue wasn’t the code itself but that the runtime environment wasn’t picking up the latest changes. Once we identified and fixed that, the tests started running correctly.
+
+More importantly, the teammate told me the structured way of debugging and questioning was helpful, and they later applied the same approach independently on other issues.
+```
+
+#### 5. How do you ensure that the work you do is inclusive and that different perspectives are considered?
+
+```
+Inclusiveness is something I try to practice intentionally in day-to-day work, both in technical and non-technical situations.
+
+For example, a new team member joined our team, and a few months later we were preparing for a product showcase for a broad audience. During preparation, they were excited about explaining a deep technical aspect of the system.
+
+I shared my perspective that, given the audience and the goal of the event, we might want to keep the discussion more high-level. Although we aligned on that initially, during the presentation they brought it up and received some follow-up questions they weren’t prepared for.
+
+I stepped in to support them during the discussion so they wouldn’t feel exposed, and we handled it smoothly. Afterward, we had a constructive conversation about aligning content with audience and scope, and it became a good learning moment rather than a negative experience.
+
+More generally, in team settings like backlog refinement, I make sure everyone has a voice. When perspectives differ, we rely on data, past experience, business goals, and user impact to make decisions.
+```
+
