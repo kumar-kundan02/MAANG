@@ -150,28 +150,28 @@ We then completed it collaboratively, and it was well adopted across the team. T
 #### 4. Tell me about a time you had to help a teammate who was struggling. What did you do?
 
 
-    A few months ago, I noticed that several system tests hadn’t been running for almost two years. I discovered this while working on a feature.
+A few months ago, I noticed that several system tests hadn’t been running for almost two years. I discovered this while working on a feature.
 
-    I initially asked a teammate to investigate and fix it so they could own the solution. After a couple of days, they were still stuck, so I offered to help and we paired on it.
+I initially asked a teammate to investigate and fix it so they could own the solution. After a couple of days, they were still stuck, so I offered to help and we paired on it.
 
-    I first asked them to clearly explain the problem, what they had already tried, and what their current hypothesis was. This helped structure the debugging process and made sure we weren’t revisiting the same paths.
+I first asked them to clearly explain the problem, what they had already tried, and what their current hypothesis was. This helped structure the debugging process and made sure we weren’t revisiting the same paths.
 
-    Together, we narrowed down the possibilities and eventually realized the issue wasn’t the code itself but that the runtime environment wasn’t picking up the latest changes. Once we identified and fixed that, the tests started running correctly.
+Together, we narrowed down the possibilities and eventually realized the issue wasn’t the code itself but that the runtime environment wasn’t picking up the latest changes. Once we identified and fixed that, the tests started running correctly.
 
-    More importantly, the teammate told me the structured way of debugging and questioning was helpful, and they later applied the same approach independently on other issues.
+More importantly, the teammate told me the structured way of debugging and questioning was helpful, and they later applied the same approach independently on other issues.
 
 
 #### 5. How do you ensure that the work you do is inclusive and that different perspectives are considered?
 
 
-    Inclusiveness is something I try to practice intentionally in day-to-day work, both in technical and non-technical situations.
+Inclusiveness is something I try to practice intentionally in day-to-day work, both in technical and non-technical situations.
 
-    For example, a new team member joined our team, and a few months later we were preparing for a product showcase for a broad audience. During preparation, they were excited about explaining a deep technical aspect of the system.
+For example, a new team member joined our team, and a few months later we were preparing for a product showcase for a broad audience. During preparation, they were excited about explaining a deep technical aspect of the system.
 
-    I shared my perspective that, given the audience and the goal of the event, we might want to keep the discussion more high-level. Although we aligned on that initially, during the presentation they brought it up and received some follow-up questions they weren’t prepared for.
+I shared my perspective that, given the audience and the goal of the event, we might want to keep the discussion more high-level. Although we aligned on that initially, during the presentation they brought it up and received some follow-up questions they weren’t prepared for.
 
-    I stepped in to support them during the discussion so they wouldn’t feel exposed, and we handled it smoothly. Afterward, we had a constructive conversation about aligning content with audience and scope, and it became a good learning moment rather than a negative experience.
+I stepped in to support them during the discussion so they wouldn’t feel exposed, and we handled it smoothly. Afterward, we had a constructive conversation about aligning content with audience and scope, and it became a good learning moment rather than a negative experience.
 
-    More generally, in team settings like backlog refinement, I make sure everyone has a voice. When perspectives differ, we rely on data, past experience, business goals, and user impact to make decisions.
+More generally, in team settings like backlog refinement, I make sure everyone has a voice. When perspectives differ, we rely on data, past experience, business goals, and user impact to make decisions.
 
 
