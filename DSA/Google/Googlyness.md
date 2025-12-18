@@ -106,6 +106,17 @@
 
 ### Questions & Answers
 
+#### Why Google?
+
+I’m passionate about building dependable, scalable systems that serve millions of users and solving high-complexity problems with long-term impact. Over the past 11 years, I’ve focused on large product migrations, architectural improvements, and enabling team velocity — work that requires balancing quality, usability, and collaboration.
+
+What draws me to Google is the scale, the engineering culture, and the way teams embrace ambiguity and technical excellence together. I’ve followed advancements like Titan M security enhancements, AI-driven developer tools, and ongoing research in reliability and fairness — all of which reflect an environment where engineering isn’t just about shipping features, but about improving how software works for billions of users.
+
+I see a strong alignment between how I approach engineering — data-driven decisions, user-centered design, and cross-team collaboration — and how Google teams operate. I’m especially excited about opportunities to work on impactful systems where both technical depth and cross-functional communication matter.
+
+After more than a decade in roles where I’ve led both technical and team outcomes, I feel ready for a space where the problems are larger, the scale is broader, and the learning is continuous — and Google uniquely fits that.
+
+
 #### 1. Tell me about a time you had to work with someone whose working style was very different from yours. How did you handle it?
 
 
