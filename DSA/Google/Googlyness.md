@@ -106,6 +106,16 @@
 
 ### Questions & Answers
 
+#### Tell me about yourself
+
+I’m a software architect with around 11 years of experience, primarily working on building and evolving large-scale products. In my current role, I focus on system design, improving reliability, and enabling teams through better processes and mentoring.
+
+Over the years, I’ve worked on complex initiatives like migrating monolithic systems to microservices, introducing micro-release strategies for long-cycle desktop products, and resolving deeply rooted system issues such as long-broken automated tests. I’ve also grown into leadership roles where I learned that enabling the team and improving collaboration often has more impact than individual execution.
+
+I’m known for being structured in my thinking, calm under pressure, and collaborative. I enjoy working in ambiguous situations, breaking down complex problems, and helping teams move faster without compromising quality.
+
+At this stage in my career, I’m looking to work on problems at larger scale, with strong engineering culture and high impact—which is why I’m excited about opportunities at Google.
+
 #### Why Google?
 
 I’m passionate about building dependable, scalable systems that serve millions of users and solving high-complexity problems with long-term impact. Over the past 11 years, I’ve focused on large product migrations, architectural improvements, and enabling team velocity — work that requires balancing quality, usability, and collaboration.
